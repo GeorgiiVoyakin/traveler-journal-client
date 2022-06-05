@@ -11,6 +11,7 @@ function Header() {
           </Box>
           <Spacer />
           <Button colorScheme='blue'>Sign in</Button>
+          <Button colorScheme='blue'>Sign up</Button>
         </Flex>
       </div>
     </Box>
