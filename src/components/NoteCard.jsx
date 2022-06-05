@@ -15,7 +15,7 @@ function NoteCard(props) {
     <div className='note-card'>
       <Box boxShadow='outline' rounded='md' p={6}>
         <Flex>
-          <Box maxW='400px'>
+          <Box w='400px'>
             <Heading size='lg'>I'm a Heading</Heading>
             <Text>{props.text}</Text>
           </Box>
