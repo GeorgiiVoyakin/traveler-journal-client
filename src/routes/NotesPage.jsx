@@ -1,6 +1,7 @@
 import './NotesPage.css';
-import { VStack, StackDivider } from '@chakra-ui/react';
+import { VStack, StackDivider, IconButton } from '@chakra-ui/react';
 import NoteCard from '../components/NoteCard';
+import { AddIcon } from '@chakra-ui/icons';
 
 function NotesPage() {
   const text = [
@@ -16,6 +17,7 @@ function NotesPage() {
         {text.map((item) => {
           return <NoteCard text={item} />;
         })}
+        <IconButton aria-label='Add note' icon={<AddIcon />} />
       </VStack>
     </div>
   );
