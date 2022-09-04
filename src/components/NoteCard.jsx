@@ -30,14 +30,17 @@ function NoteCard(props) {
             />
           </Stack>
           <Spacer />
-          <Square p='4' bsize='400px'>
+          <Square p='4' bsize='400px' boxShadow='outline'>
             <YMaps>
               <Map
-                defaultState={{ center: [55.75, 37.57], zoom: 9 }}
+                defaultState={{
+                  center: [props.latitude, props.longitude],
+                  zoom: 9,
+                }}
                 width={400}
                 height={400}
               >
-                <Placemark geometry={[55.75, 37.57]} />
+                <Placemark geometry={[props.latitude, props.longitude]} />
               </Map>
             </YMaps>
           </Square>

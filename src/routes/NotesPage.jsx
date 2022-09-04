@@ -2,11 +2,26 @@ import './NotesPage.css';
 import { VStack, StackDivider, IconButton } from '@chakra-ui/react';
 import NoteCard from '../components/NoteCard';
 import { AddIcon } from '@chakra-ui/icons';
+import { useEffect } from 'react';
+import { getAllNotesForCurrentUser } from '../api/notes';
+import { useState } from 'react';
 
 function NotesPage() {
-  const text = [
-    'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla pellentesque quam vitae leo porttitor vehicula. Phasellus euismod magna a cursus maximus. Suspendisse potenti. Nam vestibulum dui at porttitor viverra. Aenean quis imperdiet tortor. Donec aliquet ex mollis ligula dictum, in accumsan purus mollis. Fusce ut sollicitudin augue. Aliquam eu ante vehicula, congue ligula quis, cursus ex. In id fringilla nibh, quis interdum turpis. Sed at nisi et ipsum dapibus malesuada vitae at leo.',
-  ];
+  const [notes, setNotes] = useState([]);
+
+  useEffect(() => {
+    getAllNotesForCurrentUser()
+      .then((response) => {
+        return response.json();
+      })
+      .then((data) => {
+        setNotes(data);
+      })
+      .catch((err) => {
+        console.log('Error while fetching notes: ' + err);
+      });
+  }, []);
+
   return (
     <div className='notes-page'>
       <VStack
@@ -14,8 +29,15 @@ function NotesPage() {
         spacing={4}
         align='stretch'
       >
-        {text.map((item) => {
-          return <NoteCard text={item} />;
+        {notes.map((item) => {
+          return (
+            <NoteCard
+              text={item.content}
+              latitude={item.latitude}
+              longitude={item.longitude}
+              key={item._id}
+            />
+          );
         })}
         <IconButton aria-label='Add note' icon={<AddIcon />} />
       </VStack>
