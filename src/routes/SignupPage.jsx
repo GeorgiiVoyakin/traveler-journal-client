@@ -8,6 +8,7 @@ import {
   Button,
   Stack,
 } from '@chakra-ui/react';
+import { signup } from '../api/users';
 
 export default function LoginPage() {
   return (
@@ -23,7 +24,20 @@ export default function LoginPage() {
               <FormLabel htmlFor='password-confirm'>Retype password</FormLabel>
               <Input id='password-confirm' type='password' />
             </FormControl>
-            <Button type='submit' colorScheme='green' w='100%'>
+            <Button
+              type='submit'
+              colorScheme='green'
+              w='100%'
+              onClick={() => {
+                signup({})
+                  .then(() => {
+                    console.log('Ok');
+                  })
+                  .catch(() => {
+                    console.log('Not ok');
+                  });
+              }}
+            >
               Sign up
             </Button>
           </Stack>
