@@ -1,7 +1,7 @@
 import './NotesPage.css';
-import { VStack, StackDivider, IconButton } from '@chakra-ui/react';
+import { VStack, StackDivider } from '@chakra-ui/react';
 import NoteCard from '../components/NoteCard';
-import { AddIcon } from '@chakra-ui/icons';
+import AddNoteCard from '../components/AddNoteCard';
 import { useEffect } from 'react';
 import { getAllNotesForCurrentUser } from '../api/notes';
 import { useState } from 'react';
@@ -39,7 +39,7 @@ function NotesPage() {
             />
           );
         })}
-        <IconButton aria-label='Add note' icon={<AddIcon />} />
+        <AddNoteCard notes={notes} setNotes={setNotes} />
       </VStack>
     </div>
   );
