@@ -117,7 +117,10 @@ function AddCard({ notes, setNotes }) {
                   type='submit'
                   onClick={() => {
                     postNote({ title, content, latitude, longitude });
-                    setNotes([...notes, { content, latitude, longitude }]);
+                    setNotes([
+                      ...notes,
+                      { title, content, latitude, longitude },
+                    ]);
                     onClose();
                     clearInputs();
                   }}

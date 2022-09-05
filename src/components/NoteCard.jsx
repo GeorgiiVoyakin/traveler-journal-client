@@ -17,7 +17,9 @@ function NoteCard(props) {
       <Box boxShadow='outline' rounded='md' p={6}>
         <Flex>
           <Box w='400px'>
-            <Heading size='lg'>I'm a Heading</Heading>
+            <Heading size='lg'>
+              {props.title ? props.title : "I'm a Heading"}
+            </Heading>
             <Text>{props.text}</Text>
           </Box>
           <Spacer />

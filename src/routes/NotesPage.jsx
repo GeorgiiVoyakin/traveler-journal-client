@@ -32,6 +32,7 @@ function NotesPage() {
         {notes.map((item) => {
           return (
             <NoteCard
+              title={item.title}
               text={item.content}
               latitude={item.latitude}
               longitude={item.longitude}
