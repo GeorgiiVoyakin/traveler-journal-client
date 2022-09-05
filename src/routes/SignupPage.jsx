@@ -19,6 +19,7 @@ export default function LoginPage() {
   const [secondPassword, setSecondPassword] = useState('');
   const minPasswordLength = 4;
   const navigate = useNavigate();
+  const [isUsernameTaken, setUsernameTaken] = useState(false);
 
   return (
     <div className='signup-page'>
@@ -33,6 +34,7 @@ export default function LoginPage() {
                 value={username}
                 onChange={(event) => {
                   setUsername(event.target.value);
+                  setUsernameTaken(false);
                 }}
               />
               <FormLabel htmlFor='password'>Password</FormLabel>
@@ -65,8 +67,18 @@ export default function LoginPage() {
                   colorScheme='green'
                   w='100%'
                   onClick={() => {
-                    signup({ username, password: firstPassword });
-                    navigate('/login');
+                    signup({ username, password: firstPassword })
+                      .then((response) => {
+                        if (response.ok) {
+                          setUsernameTaken(false);
+                          navigate('/login');
+                        } else {
+                          throw new Error('Try another username');
+                        }
+                      })
+                      .catch((err) => {
+                        setUsernameTaken(true);
+                      });
                   }}
                 >
                   Sign up
@@ -76,6 +88,9 @@ export default function LoginPage() {
               )
             ) : (
               <Text color={'red'}>Пароли не совпадают</Text>
+            )}
+            {isUsernameTaken && (
+              <Text color={'red'}>Имя пользователя уже занято</Text>
             )}
           </Stack>
         </Box>
