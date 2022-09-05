@@ -10,10 +10,16 @@ import {
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { login } from '../api/users';
+import { useNavigate } from 'react-router-dom';
 
-export default function LoginPage() {
+export default function LoginPage({ token, setToken }) {
   const [username, setUsername] = useState('');
   const [password, setPasswrod] = useState('');
+  const navigate = useNavigate();
+
+  if (token) {
+    navigate('/notes');
+  }
 
   return (
     <div className='login-page'>
@@ -51,6 +57,7 @@ export default function LoginPage() {
                   })
                   .then((data) => {
                     localStorage.setItem('token', data.token);
+                    setToken(data.token);
                   })
                   .catch((err) => {
                     console.log('Login error: ' + err);

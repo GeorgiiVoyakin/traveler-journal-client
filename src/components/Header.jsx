@@ -2,7 +2,7 @@ import { Button, Box, Flex, Spacer, Heading } from '@chakra-ui/react';
 import { Link } from 'react-router-dom';
 import './Header.css';
 
-function Header() {
+function Header({ token, setToken }) {
   return (
     <Box boxShadow='base' bg='white'>
       <div className='header'>
@@ -11,12 +11,26 @@ function Header() {
             <Heading size='md'>Traveler journal</Heading>
           </Box>
           <Spacer />
-          <Link to='/login'>
-            <Button colorScheme='blue'>Log in</Button>
-          </Link>
-          <Link to='/signup'>
-            <Button colorScheme='blue'>Sign up</Button>
-          </Link>
+          {!token ? (
+            <>
+              <Link to='/login'>
+                <Button colorScheme='blue'>Log in</Button>
+              </Link>
+              <Link to='/signup'>
+                <Button colorScheme='blue'>Sign up</Button>
+              </Link>
+            </>
+          ) : (
+            <Button
+              colorScheme='blue'
+              onClick={() => {
+                localStorage.removeItem('token');
+                setToken('');
+              }}
+            >
+              Log out
+            </Button>
+          )}
         </Flex>
       </div>
     </Box>

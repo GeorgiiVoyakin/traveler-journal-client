@@ -4,14 +4,36 @@ import LoginPage from './routes/LoginPage';
 import SignupPage from './routes/SignupPage';
 import NotesPage from './routes/NotesPage';
 import Header from './components/Header';
+import { useEffect, useState } from 'react';
 
 function App() {
-  return (
+  const [token, setToken] = useState();
+
+  useEffect(() => {
+    setToken(localStorage.getItem('token'));
+  }, []);
+
+  return !token ? (
     <div className='App'>
-      <Header />
+      <Header token={token} setToken={setToken} />
+      <Routes>
+        <Route
+          path='/login/'
+          element={<LoginPage token={token} setToken={setToken} />}
+        />
+        <Route path='/signup/' element={<SignupPage />} />
+        <Route path='*' element={<LoginPage setToken={setToken} />} />
+      </Routes>
+    </div>
+  ) : (
+    <div className='App'>
+      <Header token={token} setToken={setToken} />
       <Routes>
         <Route path='/' element={<div></div>} />
-        <Route path='/login/' element={<LoginPage />} />
+        <Route
+          path='/login/'
+          element={<LoginPage token={token} setToken={setToken} />}
+        />
         <Route path='/signup/' element={<SignupPage />} />
         <Route path='/notes/' element={<NotesPage />} />
       </Routes>
