@@ -1,4 +1,5 @@
 import { Button, Box, Flex, Spacer, Heading } from '@chakra-ui/react';
+import { Link } from 'react-router-dom';
 import './Header.css';
 
 function Header() {
@@ -10,8 +11,12 @@ function Header() {
             <Heading size='md'>Traveler journal</Heading>
           </Box>
           <Spacer />
-          <Button colorScheme='blue'>Sign in</Button>
-          <Button colorScheme='blue'>Sign up</Button>
+          <Link to='/login'>
+            <Button colorScheme='blue'>Log in</Button>
+          </Link>
+          <Link to='/signup'>
+            <Button colorScheme='blue'>Sign up</Button>
+          </Link>
         </Flex>
       </div>
     </Box>
