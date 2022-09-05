@@ -11,12 +11,14 @@ import {
 } from '@chakra-ui/react';
 import { signup } from '../api/users';
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 export default function LoginPage() {
   const [username, setUsername] = useState('');
   const [firstPassword, setFirstPassword] = useState('');
   const [secondPassword, setSecondPassword] = useState('');
   const minPasswordLength = 4;
+  const navigate = useNavigate();
 
   return (
     <div className='signup-page'>
@@ -63,13 +65,8 @@ export default function LoginPage() {
                   colorScheme='green'
                   w='100%'
                   onClick={() => {
-                    signup({ username, password: firstPassword })
-                      .then(() => {
-                        console.log('Ok');
-                      })
-                      .catch(() => {
-                        console.log('Not ok');
-                      });
+                    signup({ username, password: firstPassword });
+                    navigate('/login');
                   }}
                 >
                   Sign up
