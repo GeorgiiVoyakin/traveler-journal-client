@@ -22,6 +22,10 @@ function NotesPage() {
       });
   }, []);
 
+  useEffect(() => {
+    console.log(notes);
+  }, [notes]);
+
   return (
     <div className='notes-page'>
       <VStack
@@ -37,6 +41,9 @@ function NotesPage() {
               latitude={item.latitude}
               longitude={item.longitude}
               key={item._id}
+              id={item._id}
+              notes={notes}
+              setNotes={setNotes}
             />
           );
         })}

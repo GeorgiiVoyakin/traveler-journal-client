@@ -10,6 +10,7 @@ import {
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
+import { deleteNote } from '../api/notes';
 
 function NoteCard(props) {
   return (
@@ -24,11 +25,17 @@ function NoteCard(props) {
           </Box>
           <Spacer />
           <Stack direction='column' spacing={4}>
-            <IconButton aria-label='Call Segun' size='lg' icon={<EditIcon />} />
+            <IconButton aria-label='Edit note' size='lg' icon={<EditIcon />} />
             <IconButton
-              aria-label='Call Segun'
+              aria-label='Delete note'
               size='lg'
               icon={<DeleteIcon />}
+              onClick={() => {
+                deleteNote(props.id);
+                props.setNotes(
+                  props.notes.filter((item) => item.id !== props.id)
+                );
+              }}
             />
           </Stack>
           <Spacer />
