@@ -31,9 +31,11 @@ function NoteCard(props) {
               size='lg'
               icon={<DeleteIcon />}
               onClick={() => {
-                deleteNote(props.id);
+                deleteNote(props.id).catch((err) => {
+                  console.log('Error while deleting note ' + err);
+                });
                 props.setNotes(
-                  props.notes.filter((item) => item.id !== props.id)
+                  props.notes.filter((item) => item._id !== props.id)
                 );
               }}
             />

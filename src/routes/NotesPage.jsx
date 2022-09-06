@@ -22,10 +22,6 @@ function NotesPage() {
       });
   }, []);
 
-  useEffect(() => {
-    console.log(notes);
-  }, [notes]);
-
   return (
     <div className='notes-page'>
       <VStack
