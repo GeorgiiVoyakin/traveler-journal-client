@@ -7,6 +7,7 @@ import {
   Center,
   Button,
   Stack,
+  Flex,
 } from '@chakra-ui/react';
 import { useState } from 'react';
 import { login } from '../api/users';
@@ -23,8 +24,8 @@ export default function LoginPage({ token, setToken }) {
 
   return (
     <div className='login-page'>
-      <Center h='100%'>
-        <Box boxShadow='outline' p='6' rounded='md' bg='white'>
+      <Center>
+        <Box boxShadow='outline' p='6' rounded='md' bg='white' mt='5%'>
           <Stack spacing={4}>
             <FormControl>
               <FormLabel htmlFor='username'>Username</FormLabel>

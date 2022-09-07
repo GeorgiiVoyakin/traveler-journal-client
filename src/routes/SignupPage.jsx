@@ -23,8 +23,15 @@ export default function LoginPage() {
 
   return (
     <div className='signup-page'>
-      <Center h='100%'>
-        <Box boxShadow='outline' p='6' rounded='md' bg='white' minWidth={370}>
+      <Center>
+        <Box
+          boxShadow='outline'
+          p='6'
+          rounded='md'
+          bg='white'
+          mt='5%'
+          minWidth={370}
+        >
           <Stack spacing={4}>
             <FormControl>
               <FormLabel htmlFor='username'>Username</FormLabel>
