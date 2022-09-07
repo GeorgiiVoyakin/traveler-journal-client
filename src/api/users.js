@@ -19,3 +19,11 @@ export const login = async (user) => {
     body: JSON.stringify(user),
   });
 };
+
+export const getUsername = async () => {
+  return await fetch(`${apiHost}/user/username`, {
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+    },
+  });
+};

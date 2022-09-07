@@ -1,6 +1,6 @@
 import { apiHost } from './config';
 
-export const getAllNotesForCurrentUser = async (userId) => {
+export const getAllNotesForCurrentUser = async () => {
   return await fetch(`${apiHost}/note/get-all-current-user`, {
     headers: {
       Authorization: `Bearer ${localStorage.getItem('token')}`,
