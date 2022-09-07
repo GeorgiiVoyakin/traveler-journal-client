@@ -30,7 +30,7 @@ export default function LoginPage() {
           rounded='md'
           bg='white'
           mt='5%'
-          minWidth={370}
+          minWidth={400}
         >
           <Stack spacing={4}>
             <FormControl>
