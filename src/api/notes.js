@@ -29,3 +29,14 @@ export const deleteNote = async (id) => {
     body: JSON.stringify({ id }),
   });
 };
+
+export const updateNote = async (note) => {
+  return await fetch(`${apiHost}/note/update`, {
+    method: 'PUT',
+    headers: {
+      Authorization: `Bearer ${localStorage.getItem('token')}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(note),
+  });
+};

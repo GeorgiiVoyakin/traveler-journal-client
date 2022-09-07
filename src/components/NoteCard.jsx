@@ -7,12 +7,16 @@ import {
   Text,
   Heading,
   Square,
+  useDisclosure,
 } from '@chakra-ui/react';
 import { EditIcon, DeleteIcon } from '@chakra-ui/icons';
 import { YMaps, Map, Placemark } from '@pbe/react-yandex-maps';
 import { deleteNote } from '../api/notes';
+import EditCard from './EditNoteCard';
 
 function NoteCard(props) {
+  const { isOpen, onOpen, onClose } = useDisclosure();
+
   return (
     <div className='note-card'>
       <Box boxShadow='outline' rounded='md' p={6}>
@@ -25,7 +29,23 @@ function NoteCard(props) {
           </Box>
           <Spacer />
           <Stack direction='column' spacing={4}>
-            <IconButton aria-label='Edit note' size='lg' icon={<EditIcon />} />
+            <IconButton
+              aria-label='Edit note'
+              size='lg'
+              icon={<EditIcon />}
+              onClick={onOpen}
+            />
+            <EditCard
+              notes={props.notes}
+              setNotes={props.setNotes}
+              isOpen={isOpen}
+              onClose={onClose}
+              heading={props.title}
+              text={props.text}
+              lat={props.latitude}
+              long={props.longitude}
+              id={props.id}
+            />
             <IconButton
               aria-label='Delete note'
               size='lg'
