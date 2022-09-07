@@ -25,7 +25,7 @@ import {
 import { useState } from 'react';
 import { postNote } from '../api/notes';
 
-function AddCard({ notes, setNotes }) {
+function AddCard({ notes, setNotes, warningOnOpen }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
@@ -118,6 +118,9 @@ function AddCard({ notes, setNotes }) {
                   onClick={() => {
                     postNote({ title, content, latitude, longitude })
                       .then((response) => {
+                        if (response.status === 409) {
+                          throw new Error('Duplicate note');
+                        }
                         return response.json();
                       })
                       .then((data) => {
@@ -125,6 +128,9 @@ function AddCard({ notes, setNotes }) {
                           ...notes,
                           { title, content, latitude, longitude, _id: data.id },
                         ]);
+                      })
+                      .catch((e) => {
+                        warningOnOpen();
                       });
                     onClose();
                     clearInputs();

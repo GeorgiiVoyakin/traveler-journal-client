@@ -1,5 +1,13 @@
 import './NotesPage.css';
-import { VStack, StackDivider } from '@chakra-ui/react';
+import {
+  Alert,
+  AlertIcon,
+  VStack,
+  StackDivider,
+  CloseButton,
+  useDisclosure,
+  Spacer,
+} from '@chakra-ui/react';
 import NoteCard from '../components/NoteCard';
 import AddNoteCard from '../components/AddNoteCard';
 import { useEffect } from 'react';
@@ -8,6 +16,11 @@ import { useState } from 'react';
 
 function NotesPage() {
   const [notes, setNotes] = useState([]);
+  const {
+    isOpen: warning,
+    onClose,
+    onOpen,
+  } = useDisclosure({ defaultIsOpen: false });
 
   useEffect(() => {
     getAllNotesForCurrentUser()
@@ -43,7 +56,21 @@ function NotesPage() {
             />
           );
         })}
-        <AddNoteCard notes={notes} setNotes={setNotes} />
+        {warning && (
+          <Alert status='warning'>
+            <AlertIcon />
+            Заметка с такими координатами уже существует
+            <Spacer />
+            <CloseButton
+              alignSelf='flex-start'
+              position='relative'
+              right={-1}
+              top={-1}
+              onClick={onClose}
+            />
+          </Alert>
+        )}
+        <AddNoteCard notes={notes} setNotes={setNotes} warningOnOpen={onOpen} />
       </VStack>
     </div>
   );
