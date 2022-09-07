@@ -67,6 +67,10 @@ function NoteCard(props) {
                   center: [props.latitude, props.longitude],
                   zoom: 9,
                 }}
+                state={{
+                  center: [props.latitude, props.longitude],
+                  zoom: 9,
+                }}
                 width={400}
                 height={400}
               >

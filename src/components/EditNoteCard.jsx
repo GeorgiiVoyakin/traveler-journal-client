@@ -37,10 +37,10 @@ function EditCard({
   const [longitude, setLongitude] = useState(long);
 
   function clearInputs() {
-    setTitle(heading);
-    setContent(text);
-    setLatitude(lat);
-    setLongitude(long);
+    setTitle(title);
+    setContent(content);
+    setLatitude(latitude);
+    setLongitude(longitude);
   }
 
   return (
