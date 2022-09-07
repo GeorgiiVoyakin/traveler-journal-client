@@ -5,6 +5,7 @@ import SignupPage from './routes/SignupPage';
 import NotesPage from './routes/NotesPage';
 import Header from './components/Header';
 import { useEffect, useState } from 'react';
+import MainPage from './routes/MainPage';
 
 function App() {
   const [token, setToken] = useState();
@@ -29,13 +30,14 @@ function App() {
     <div className='App'>
       <Header token={token} setToken={setToken} />
       <Routes>
-        <Route path='/' element={<div></div>} />
+        <Route path='/' element={<MainPage />} />
         <Route
           path='/login/'
           element={<LoginPage token={token} setToken={setToken} />}
         />
         <Route path='/signup/' element={<SignupPage />} />
         <Route path='/notes/' element={<NotesPage />} />
+        <Route path='*' element={<MainPage />} />
       </Routes>
     </div>
   );
