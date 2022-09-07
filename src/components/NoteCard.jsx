@@ -16,7 +16,7 @@ function NoteCard(props) {
   return (
     <div className='note-card'>
       <Box boxShadow='outline' rounded='md' p={6}>
-        <Flex>
+        <Flex gap='7'>
           <Box w='400px'>
             <Heading size='lg'>
               {props.title ? props.title : "I'm a Heading"}
@@ -40,7 +40,6 @@ function NoteCard(props) {
               }}
             />
           </Stack>
-          <Spacer />
           <Square p='4' bsize='400px' boxShadow='outline'>
             <YMaps>
               <Map
