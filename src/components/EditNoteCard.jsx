@@ -69,7 +69,7 @@ function EditCard({
               <FormLabel htmlFor='note-content'>Note content</FormLabel>
               <Textarea
                 placeholder='Here is a sample placeholder'
-                value={text}
+                value={content}
                 onChange={(e) => setContent(e.target.value)}
               />
 
@@ -77,7 +77,7 @@ function EditCard({
                 <FormLabel htmlFor='latitude'>Latitude</FormLabel>
                 <NumberInput
                   step={1}
-                  defaultValue={lat}
+                  defaultValue={latitude}
                   min={-90}
                   max={90}
                   maxW='100px'
@@ -93,7 +93,7 @@ function EditCard({
                 <FormLabel htmlFor='longitude'>Longitude</FormLabel>
                 <NumberInput
                   step={1}
-                  defaultValue={long}
+                  defaultValue={longitude}
                   min={-180}
                   max={180}
                   maxW='100px'
