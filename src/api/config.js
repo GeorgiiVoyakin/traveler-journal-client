@@ -1,1 +1,1 @@
-export const apiHost = 'http://localhost:3001';
+export const apiHost = 'https://traveler-journal-server.herokuapp.com/';
